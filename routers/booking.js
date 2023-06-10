@@ -1,7 +1,7 @@
 const router=require("express").Router();
 const Booking=require("../models/Booking");
 
-router.post('/book',async(req,res)=>{
+router.post('/postBook',async(req,res)=>{
     const newBooking=new Booking(req.body);
     try{
         const saveBook=await newBooking.save();
@@ -12,8 +12,10 @@ router.post('/book',async(req,res)=>{
     }
 })
 
-router.get('/book',async(req,res)=>{
+router.get('/getBook',async(req,res)=>{
     try{
+        const data=await Booking.find();
+        res.status(200).json(data);
     }
     catch(err){
         res.status(500).json(err);
