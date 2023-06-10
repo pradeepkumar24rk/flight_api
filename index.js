@@ -9,6 +9,8 @@ app.use(cors());
 
 //routers
 const userRouter=require("./routers/user");
+const AdminRouter=require("./routers/admin");
+const Booking=require("./routers/booking");
 
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
@@ -22,6 +24,8 @@ app.use(express.json());
 
 //api
 app.use("/api/user",userRouter);
+app.use("/api/admin",AdminRouter);
+app.use("/api/booking",Booking);
 
 app.listen(5000,()=>{
     console.log("Server Started");
